@@ -33,25 +33,27 @@
                 <div class="consulta_registro">
                     <table>
                         <tr>
-                            <th><strong>Id</strong></th>
-                            <th><strong>User Name</strong></th>
                             <th><strong>Nombre</strong></th>
                             <th><strong>Apellido</strong></th>
+                            <th><strong>Cedula</strong></th>
                             <th><strong>Direccion</strong></th>
                             <th><strong>Correo</strong></th>
+                            <th><strong>Telefono</strong></th>
+                            <th><strong>User Name</strong></th>
                             <th><strong>Fecha de creación</strong></th>
                             <th><strong>Estado</strong></th>
                             <th><strong>Rol</strong></th>
                         </tr>
 
                         <tr v-for="item in lista">
-                            <td v-text="item.id"></td>
-                            <td v-text="item.user_name"></td>
                             <td v-text="item.nombre"></td>
                             <td v-text="item.apellido"></td>
+                            <td v-text="item.cedula"></td>
                             <td v-text="item.direccion"></td>
                             <td v-text="item.correo"></td>
-                            <td v-text="item.create_date"></td>
+                            <td v-text="item.telefono"></td>
+                            <td v-text="item.user_name"></td>
+                            <td v-text="item.fecha_registro"></td>
                             <td v-text="item.activo"></td>
                             <td v-text="item.id_rol"></td>
                         </tr>
@@ -73,13 +75,14 @@ export default {
     data: function () {
         return {
             lista: [{
-                id: "",
+                cedula: "",
                 user_name: "",
                 nombre: "",
                 apellido: "",
                 direccion: "",
+                telefono: "",
                 correo: "",
-                create_date: "",
+                fecha_registro: "",
                 activo: "",
                 id_rol: "",
             }],

@@ -23,7 +23,7 @@
         </div>
         <div class="derecha_2">
             <div class="marco_2">
-                <input type="text" v-model="registro.id" placeholder=" ingrese el id del paciente">
+                <input type="text" v-model="registro.cedula_consulta" placeholder=" Cedula del paciente">
                 <form class="forma_2" v-on:submit.prevent="consultaPacienteRegistrado">
                     <div class="boton_lateral_2">
                         <div class="boton_consultar_paciente_registrado">
@@ -36,19 +36,27 @@
                         <tr>
                             <th><strong>Nombre</strong></th>
                             <th><strong>Apellido</strong></th>
+                            <th><strong>Cedula</strong></th>
                             <th><strong>Direccion</strong></th>
                             <th><strong>Correo</strong></th>
+                            <th><strong>Telefono</strong></th>
                             <th><strong>Rol</strong></th>
                             <th><strong>Fecha de creación</strong></th>
+                            <th><strong>Medico Asignado</strong></th>
+                            <th><strong>Familiar Asignado</strong></th>
                         </tr>
 
                         <tr>
                             <td>{{registro.nombre}}</td>
                             <td>{{registro.apellido}}</td>
+                            <td>{{registro.cedula}}</td>
                             <td>{{registro.direccion}}</td>
                             <td>{{registro.correo}}</td>
+                            <td>{{registro.telefono}}</td>
                             <td v-if="paciente">Paciente</td>
-                            <td>{{registro.create_date}}</td>
+                            <td>{{registro.fecha_registro}}</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </table>
                 </div>
@@ -66,13 +74,14 @@ export default {
     data: function () {
         return {
             registro: {
-                id: "",
                 nombre: "",
                 apellido: "",
+                cedula: "",
                 direccion: "",
                 correo: "",
-                create_date: "",
+                telefono: "",
                 id_rol: "",
+                fecha_registro: "",
             },
             consulta_paciente: false,
         }
@@ -80,23 +89,27 @@ export default {
 
     methods: {
         consultaPacienteRegistrado: function () {
-            const url = "http://127.0.0.1:8000/usuario/" + this.registro.id + "/";
+            const url = "http://127.0.0.1:8000/usuario/" + this.registro.cedula_consulta + "/";
             axios.get(url).then((result) => {
-                this.registro.id = "";
+                this.registro.cedula_consulta = "";
                 this.registro.id_rol = result.data.id_rol;
-                if (this.registro.id_rol == "2") {
+                if (this.registro.id_rol == "3") {
                     this.registro.nombre = result.data.nombre;
                     this.registro.apellido = result.data.apellido;
+                    this.registro.cedula = result.data.cedula;
                     this.registro.direccion = result.data.direccion;
                     this.registro.correo = result.data.correo;
-                    this.registro.create_date = result.data.create_date;
+                    this.registro.telefono = result.data.telefono;
+                    this.registro.fecha_registro = result.data.fecha_registro;
                     this.paciente = true;
                 } else {
                     this.registro.nombre = "";
                     this.registro.apellido = "";
+                    this.registro.cedula = "",
                     this.registro.direccion = "";
                     this.registro.correo = "";
-                    this.registro.create_date = "";
+                    this.registro.telefono = "",
+                    this.registro.fecha_registro = "";
                     this.paciente = false;
                     alert("ERROR: El ID ingresado no corresponde a un Paciente ");
                 }

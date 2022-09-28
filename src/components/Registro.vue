@@ -8,17 +8,21 @@
                     <form class="forma" v-on:submit.prevent="registroUsuario">
                         <input type="text" v-model="usuario.nombre" placeholder="Nombre"><br>
                         <input type="text" v-model="usuario.apellido" placeholder="Apellido"><br>
+                        <input type="text" v-model="usuario.cedula" placeholder="Cedula"><br>
                         <input type="text" v-model="usuario.direccion" placeholder="Direccion"><br>
                         <input type="text" v-model="usuario.correo" placeholder="Correo"><br>
+                        <input type="text" v-model="usuario.telefono" placeholder="Telefono"><br>
                         <input type="text" v-model="usuario.user_name" placeholder="Username"><br>
                         <input type="text" v-model="usuario.password" placeholder="Password"><br>
                         <select v-model="usuario.id_rol" placeholder="Rol">
                             <option value="">Seleccione el rol del Usuario...</option>
                             <option value="1">Administrador</option>
-                            <option value="2">Paciente</option>
-                            <option value="3">Medico</option>
-                            <option value="4">Enfermero</option>
+                            <option value="2">Auxiliar</option>
+                            <option value="3">Paciente</option>
                             <option value="4">Familiar</option>
+                            <option value="5">Medico</option>
+                            <option value="6">Enfermero</option>
+                            
                         </select><br><br>
                         <button type="submit">Registrarse</button>
                     </form>
@@ -40,8 +44,10 @@ export default {
             usuario: {
                 nombre: "",
                 apellido: "",
+                cedula: "",
                 direccion: "",
                 correo: "",
+                telefono: "",
                 user_name: "",
                 password: "",
                 id_registro: "1",
