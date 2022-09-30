@@ -5,6 +5,7 @@ import Registro from './components/Registro.vue'
 import ConsultaRegistro from './components/ConsultaRegistro.vue'
 import ConsultaPaciente from './components/ConsultaPaciente.vue'
 import AsignarMedico from './components/AsignarMedico.vue'
+import AsignarFamiliar from './components/AsignarFamiliar.vue'
 
 const routes = [{
         path: '/',
@@ -30,6 +31,11 @@ const routes = [{
         path: '/user/pacientepersonalsalud',
         name: "asignarmedico",
         component: AsignarMedico
+    },
+    {
+        path: '/user/familiarpaciente',
+        name: "asignarfamiliar",
+        component: AsignarFamiliar
     },
 ]
 

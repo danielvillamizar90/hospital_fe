@@ -1,15 +1,15 @@
 <template>
     <section id="pantalla-dividida">
-        <div class="izquierda_4">
-            <div class="asignar">
-                <div class="contenido_asignar">
+        <div class="izquierda_5">
+            <div class="asignar_p">
+                <div class="contenido_asignar_p">
                     <img class="logo" src="http://drive.google.com/uc?export=view&id=10esmGfVLdrKg-d_xsGhXBzy8gJpYleUX">
                     <h2>Registros de Usuarios</h2>
-                    <form class="forma_4" v-on:submit.prevent="registroUsuario">
-                        <input type="text" v-model="asignar_medico.id_paciente" placeholder="Id Paciente"><br>
-                        <input type="text" v-model="asignar_medico.id_medico" placeholder="Id Medico"><br>
-                        <input type="text" v-model="asignar_medico.fecha_inicio" placeholder="Fecha Inicio"><br>
-                        <input type="text" v-model="asignar_medico.fecha_fin" placeholder="Fecha Fin"><br>
+                    <form class="forma_5" v-on:submit.prevent="registroUsuario_2">
+                        <input type="text" v-model="asignar_familiar.id_paciente" placeholder="Id Paciente"><br>
+                        <input type="text" v-model="asignar_familiar.id_familiar" placeholder="Id Familiar"><br>
+                        <input type="text" v-model="asignar_familiar.fecha_inicio" placeholder="Fecha Inicio"><br>
+                        <input type="text" v-model="asignar_familiar.fecha_fin" placeholder="Fecha Fin"><br>
                         <button type="submit">Asignar</button>
                     </form>
                     <h5>Mintic Equipo 4<br>Todos los derechos reservados - 2022</h5>
@@ -24,26 +24,26 @@
 <script>
 import axios from 'axios';
 export default {
-    name: 'AsignarMedico',
+    name: 'AsignarFamiliar',
     data: function () {
         return {
-            asignar_medico: {
+            asignar_familiar: {
                 id: "",
                 fecha_inicio: "",
                 fecha_fin: "",
                 id_paciente: "",
-                id_medico: "",
+                id_familiar: "",
             }
         }
     },
     methods: {
-        registroUsuario: function (event) {
-            const url = "http://127.0.0.1:8000/paciente-personal-salud/";
-            axios.post(url, this.asignar_medico).then((result) => {
+        registroUsuario_2: function (event) {
+            const url = "http://127.0.0.1:8000/paciente-familiar/";
+            axios.post(url, this.asignar_familiar).then((result) => {
                 alert("Asignación Exitosa: " + result.status);
             })
             .catch((error) => {
-                alert("ERROR: ID no registrado / ID no corresponde a un medico" + error);
+                alert("ERROR: ID no registrado / ID no corresponde a un familiar" + error);
             });
             event.target.reset();
         },
@@ -55,7 +55,7 @@ export default {
 body {
     margin: 0 0 0 0;
 }
-.izquierda_4 {
+.izquierda_5 {
     background: white;
     width: 40%;
     height: 100vh;
@@ -72,7 +72,7 @@ body {
 .logo {
     width: 40%;
 }
-.asignar {
+.asignar_p {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -81,7 +81,7 @@ body {
     justify-content: center;
     align-items: center;
 }
-.contenido_asignar {
+.contenido_asignar_p {
     border: 2px solid #283747;
     border-radius: 20px;
     width: 80%;
@@ -92,7 +92,7 @@ body {
     align-items: center;
     background: white;
 }
-.asignar button {
+.asignar_p button {
     width: 100%;
     height: 40px;
     color: #E5E7E9;
@@ -101,10 +101,10 @@ body {
     padding: 0px 0px;
     margin: 0px 0px;
 }
-.contenido_asignar h5 {
+.contenido_asignar_p h5 {
     text-align: center;
 }
-.forma_4 input{
+.forma_5 input{
     width: 100%;
 }
 select{

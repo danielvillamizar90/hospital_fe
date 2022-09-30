@@ -56,7 +56,7 @@
                             <td v-if="paciente">Paciente</td>
                             <td>{{registro.fecha_registro}}</td>
                             <td v-text="nombre_medico"></td>
-                            <td></td>
+                            <td v-text="nombre_familiar"></td>
                         </tr>
                     </table>
                 </div>
@@ -94,6 +94,16 @@ export default {
                 id_medico: "",
             }],
             nombre_medico: "",
+
+            //lista de la tercera consulta
+            lista_2: [{
+                id: "",
+                fecha_inicio: "",
+                fecha_fin: "",
+                id_paciente: "",
+                id_familiar: "",
+            }],
+            nombre_familiar: "",
         }
     },
 
@@ -122,28 +132,49 @@ export default {
                     this.registro.fecha_registro = "";
                     this.paciente = false;
                     this.nombre_medico = "";
+                    this.nombre_familiar = "";
                     alert("ERROR: El ID ingresado no corresponde a un Paciente ");
                 }
                 this.consulta_paciente = true;
 
                 // segunda consulta
 
-            const url_2 = "http://127.0.0.1:8000/paciente-personal-salud_view/";
-            axios.get(url_2).then((result) => {
-                
-                this.lista = result.data;
-                for(var i = 0; i < this.lista.length; i++){
-                    if(this.lista[i].id_paciente == this.registro.cedula) {
-                        
-                        this.nombre_medico = this.lista[i].id_medico;
+                const url_2 = "http://127.0.0.1:8000/paciente-personal-salud_view/";
+                axios.get(url_2).then((result) => {
+                    
+                    this.lista = result.data;
+                    for(var i = 0; i < this.lista.length; i++){
+                        if(this.lista[i].id_paciente == this.registro.cedula) {
+                            
+                            this.nombre_medico = this.lista[i].id_medico;
 
-                    }else { 
-                        
-                        this.nombre_medico = "Sin Asignar";
+                        }else { 
+                            
+                            this.nombre_medico = "Sin Asignar";
 
+                        }
                     }
-                }
-            })
+
+                        // tercera consulta
+
+                    const url_3 = "http://127.0.0.1:8000/paciente-familiar_view/";
+                    axios.get(url_3).then((result) => {
+                        
+                        this.lista_2 = result.data;
+                        for(var j = 0; j < this.lista_2.length; j++){
+                            if(this.lista_2[j].id_paciente == this.registro.cedula) {
+                                
+                                this.nombre_familiar = this.lista_2[j].id_familiar;
+
+                            }else { 
+                                
+                                this.nombre_familiar = "Sin Asignar";
+
+                            }
+                        }
+                    })
+
+                })
 
             })
 
@@ -158,6 +189,7 @@ export default {
                 this.registro.fecha_registro = "";
                 this.paciente = false;
                 this.nombre_medico = "";
+                this.nombre_familiar = "";
             });
         },
 
