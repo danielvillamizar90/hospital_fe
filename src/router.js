@@ -4,6 +4,7 @@ import App from './App.vue'
 import Registro from './components/Registro.vue'
 import ConsultaRegistro from './components/ConsultaRegistro.vue'
 import ConsultaPaciente from './components/ConsultaPaciente.vue'
+import AsignarMedico from './components/AsignarMedico.vue'
 
 const routes = [{
         path: '/',
@@ -24,6 +25,11 @@ const routes = [{
         path: '/user/consultaregistro',
         name: "consultaregistro",
         component: ConsultaRegistro
+    },
+    {
+        path: '/user/pacientepersonalsalud',
+        name: "asignarmedico",
+        component: AsignarMedico
     },
 ]
 
