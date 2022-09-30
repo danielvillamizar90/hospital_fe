@@ -121,6 +121,7 @@ export default {
                     this.registro.telefono = "",
                     this.registro.fecha_registro = "";
                     this.paciente = false;
+                    this.nombre_medico = "";
                     alert("ERROR: El ID ingresado no corresponde a un Paciente ");
                 }
                 this.consulta_paciente = true;
@@ -136,9 +137,9 @@ export default {
                         
                         this.nombre_medico = this.lista[i].id_medico;
 
-                    }else {
-               
-                        this.nombre_medico = "";
+                    }else { 
+                        
+                        this.nombre_medico = "Sin Asignar";
 
                     }
                 }
